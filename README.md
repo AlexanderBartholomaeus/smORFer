@@ -11,5 +11,14 @@ Our algorithm cotains 3 moduls:
 
 # Code and example data
 
-We provide our code together with an truncated ***E.coli*** genome input (~100000 first bases) and outputs as examples.
+We provide our code together with an truncated ***E.coli*** genome input (~100000 first bases) and outputs as examples. The scripts are written in bash, Perl and R. To execute the examples call the bash script in each subfolder. 
 
+## Requirements
+
+* Linux operating system 
+* bedtools
+* Perl
+* R
+  * Biostrings (Bioconductor)
+  * seqinr (CRAN)
+ 
