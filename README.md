@@ -18,7 +18,7 @@ We provide our code together with an truncated ***E.coli*** genome input (~10000
 * Linux operating system 
 * bedtools
 * Perl
-* R
+* R (including the following packages)
   * Biostrings (Bioconductor)
   * seqinr (CRAN)
  
