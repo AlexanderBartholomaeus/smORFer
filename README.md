@@ -3,7 +3,7 @@ smORFer is a small ORF (smORF) detection algorithm that integtates genome, ribos
 
 # Introduction to the algorithm
 
-Our algorithm cotains 3 moduls:
+Our algorithm contains 3 moduls:
 
 * module A: Genome search module to detect all possible ORFs from a gives genome (FASTA)
 * module B: Detect smORF candidates using ribosome profiling data
