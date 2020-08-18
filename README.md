@@ -25,4 +25,4 @@ We provide our code together with an truncated ***E.coli*** genome input (~10000
 ## More information
 For more information about smORFer contact:
 bartholomaeus.alexander@gmail.com or 
-baban.kolte@chemie.uni-hamburg.de or
+baban.kolte@chemie.uni-hamburg.de
