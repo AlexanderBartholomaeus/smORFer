@@ -66,6 +66,9 @@ storeFT <- matrix(NA, nrow=nrow(u_genes),ncol=4)
 # for each unique genes
 for(i in 1:nrow(u_genes)){
   # status print status every 100 genes / ORFs
+  if(i == 1){
+    cat('Start obtaining FT signals\n')
+  }
   if(i %% 100 == 0){
     cat(paste0(i, ' genes/ORFs processed \n'))
   }
@@ -78,7 +81,7 @@ for(i in 1:nrow(u_genes)){
     storeFT[i,1:4] <- ft
   } else {
     # if not dividable by 3 print skipped
-    print('skipped')
+    cat(paste0('  ',u_genes[i,4],' skipped\n'))
   } 
 }
 
