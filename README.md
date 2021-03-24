@@ -9,6 +9,7 @@ In the following you can find information regarding:
   * [Module A](#module-a)
   * [Module B](#module-b)
   * [Module C](#module-c)
+  * [Helper scripts](#helper-scripts)
 * [Installation and requirements](#installation-and-requirements)
 * [File formats](#file-formats)
 * [Contact](#contact)
@@ -113,9 +114,9 @@ This step uses the input regions a checks for 3-nt sequence periodicity to prefi
 
 ```
 # call:
-# bash FT_GCcontent.sh fasta.fa orfs.bed
+bash FT_GCcontent.sh fasta.fa orfs.bed
 # call using example data: 
-# bash modulA_pORFs_genome_search/3_FT_GCcontent/FC_GCcontent.sh example_data/ecoli_100k_nt.fa modulA_pORFs_genome_search/2_region_selection/output/pORFs_filtered.bed
+bash modulA_pORFs_genome_search/3_FT_GCcontent/FC_GCcontent.sh example_data/ecoli_100k_nt.fa modulA_pORFs_genome_search/2_region_selection/output/pORFs_filtered.bed
 ```
 
 In the output folder you will find the ORFs that show a sequence (GC content) 3-nt periodic pattern. The output file is call `FT_passed.bed`. 
@@ -198,9 +199,9 @@ To find ORF that clearly show a 3-nt periodic signal Fourier Transform is perfor
 
 ```
 # call script 
-bash FT_RPF.sh high_expressed_ORFs.bed calibrated_RiboSeq.bam 
+bash FT_RPF.sh high_expressed_ORFs.bed calibrated_RiboSeq.bam
 # call using example data
-bash modulB_RPF_analysis/5_FT_RPF/FT_RPF.sh bash modulB_RPF_analysis/4_count_RPF/output/RPF_high.bed example_data/RPF_calibrated.bam 
+bash modulB_RPF_analysis/5_FT_RPF/FT_RPF.sh modulB_RPF_analysis/4_count_RPF/output/RPF_high.bed example_data/RPF_calibrated.bam
 ```
 
 The output is a **BED** like file with all ORF passing the cutoff with an additional column showing the FT ratio signal. Please note that our example call did not reveal any ORF because the example **BAM** file contain too few reads and would be too large to be stored here.
@@ -214,6 +215,20 @@ The Step is experimentally. You may find it useful to detect the most probable s
 bash find_best_start.sh
 
 ```
+
+##### One-step module B
+
+We do not recommend to run the full module B in a one-step procedure. However, you can do this by calling:
+
+```
+# call:
+bash run_moduleB.sh pORFs.bed RPF.bam RPF_calibrated.bam
+# call with example data:
+bash modulB_RPF_analysis/run_moduleB.sh modulA_pORFs_genome_search/2_region_selection/output/pORFs_filtered.bed example_data/RPF.bam example_data/RPF_calibrated.bam
+
+```
+
+Please note, only step 4 and step 5 are performed because step 6 is experimental. The output files can be found in the according subfolders (see details above step 4 and step 5).
 
 ### Module C
 
@@ -232,9 +247,11 @@ Please not the for the mapping the genome name has to be used as in the resultin
 
 ##### Details on module C
 
-First, the start codon location has to be identified and a new **BED** file with the start codon +- and offset one codon will be created for the counting of TIS-Seq reads in the next step. For our analysis the TIS-Seq reads show nice enrichment for the offset of +- one codon when considering the middle nucleotide of each TIS-Seq read.
 
 **Step 7**: obtain start codon location to prepare for counting
+
+First, the start codon location has to be identified and a new **BED** file with the start codon +- and offset one codon will be created for the counting of TIS-Seq reads in the next step. For our analysis the TIS-Seq reads show nice enrichment for the offset of +- one codon when considering the middle nucleotide of each TIS-Seq read.
+
 
 ```
 # call script 
@@ -252,9 +269,9 @@ down_offset <- 3
 
 ```
 
-Next, TIS-Seq reads will counted and ORF over the cutoff will be returns 
-
 **Step 8**: count Tis-Seq reads and identify translated ORF start codons
+
+Next, TIS-Seq reads will counted and ORF over the cutoff will be returns 
 
 ```
 # call script 
@@ -262,6 +279,33 @@ bash count_TIS.sh start_codons.bed TisSeq.bam
 # call using example data
 bash modulC_TIS_analysis/8_count_TIS/count_TIS.sh modulC_TIS_analysis/7_get_start_codon/output/start_codons.bed example_data/TIS.bam 
 ```
+
+The output folder will contain two **BED** lke files. `TIS_counts.txt` contains all ORFs including a new output columns from bedtool's `coverageBed` commands. Column 7 contains the obtained read counts. The other file `TIS_candidates.txt` contains only the ORF candidates that passed the cutoff. If you wish to change the cutoff you can open the `count_TIS.sh` and change `>= 5` in line 11 to any number you like:
+
+```
+awk '$7 >= 5' output/TIS_counts.txt > output/TIS_candidates.txt
+```
+
+##### One-step module C
+
+You can run complete module C by calling:
+
+```
+# call:
+bash run_moduleC.sh pORFs.bed TisSeq.bam
+# call using example data: 
+bash modulC_TIS_analysis/run_modulec.sh modulA_pORFs_genome_search/2_region_selection/output/pORFs_filtered.bed example_data/TIS.bam 
+```
+
+The output files can be found in the according subfolders (see details above step 7 and step 8). 
+
+### Helper scripts
+
+To manipulate and modify input file we provide few scripts in the `helper_scripts` folder. 
+
+** GFF to BED parser**: `parse_gff.R` This script can parse GFF ot BED files.
+
+** Read middle nucleotide**: Get the middle nucleotid from each mapped sequencing read. 
 
 ## Installation & Requirements
 

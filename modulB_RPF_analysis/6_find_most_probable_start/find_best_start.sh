@@ -1,5 +1,10 @@
 #! /bin/bash
 
+# get script path
+script_path=$(dirname "$0")
+
+# create output folder
+mkdir -p "${script_path}/output"
 
 # get bed for validted candidates
 awk '{print $1"\t"$2"\t"$3"\t"$4"\t"$5"\t"$6}' RPF_validated.bed
