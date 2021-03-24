@@ -4,6 +4,7 @@ smORFer is a small ORF (smORF) detection algorithm that integtates genome, ribos
 In the following you can find information regarding:
 
 * [General introduction](#introduction-to-the-algorithm)
+* [Example data and replicates](#example-data-and-replicates)
 * [Code and data](#code-and-example-data) including:
   * [Module A](#module-a)
   * [Module B](#module-b)
@@ -25,13 +26,17 @@ Our algorithm contains 3 moduls:
 
 smORFer is a modular algorithm and can be used according to your available data. For further details see the detailed module sections [module A](#module-a), [module B](#module-b), [module C](#module-c).
 
-smORFer is developed for prokaryotes however it will work also for eukaryotes. The main restriction for eukaryotes it the ORF detection procedure of modul A developed by [Baek et al.](https://academic.oup.com/g3journal/article/7/3/983/6027630) (FileS1). This procedure searches for ORFs in continues stretches of sequences and it does not include exon-intron structures.     
+smORFer is developed and tested for prokaryotes however it will work also for eukaryotes. The main restriction for eukaryotes it the ORF detection procedure of modul A developed by [Baek et al.](https://academic.oup.com/g3journal/article/7/3/983/6027630) (FileS1). This procedure searches for ORFs in continues stretches of sequences and it does not include exon-intron structures.     
 
 Thoughout the different step different file formats are used: **BED** format in the 6-column version (**BED6**) for ORF/gene locations, **BAM** format to store sequencing reads and some **CSV** files. For further information on **BED** and **BAM** format see the section [file formats](#file-formats)
 
-## Code and example data
+## Example data and replicates
 
 We provide our code together with an truncated ***E.coli*** genome input (~100000 first bases) and outputs as examples. The scripts are written in bash, Perl and R. To execute the examples call the bash script in each subfolder. Or run the modules in a one-step procedure. Please note, that for module B, the one-step procedure excludes the calibration (i.e. the codon exact positioning) of  Ribo-Seq reads because manual input is required.
+
+The algortihm does not use replicate sequencing data directly. A ususal approach is first to check that the replicates show that same behavior for high expressed genes regarding the read counts. Second, the replicates can be merged into one file to increase the detection limit for low expressed genes.  
+
+## Code and example data
 
 In the following we will give a detailed explanation of the different steps to run and execute the modules including code example of each step. In addtion, we will explain how to execute a full module in one-step execution using standard parameters. 
 
@@ -227,7 +232,7 @@ Please not the for the mapping the genome name has to be used as in the resultin
 
 ##### Details on module C
 
-First, the start codon location has to be identified and a new **BED** file with the start codon +- one codon will be created for the counting of TIS-Seq reads in the next step.
+First, the start codon location has to be identified and a new **BED** file with the start codon +- and offset one codon will be created for the counting of TIS-Seq reads in the next step. For our analysis the TIS-Seq reads show nice enrichment for the offset of +- one codon when considering the middle nucleotide of each TIS-Seq read.
 
 **Step 7**: obtain start codon location to prepare for counting
 
@@ -238,9 +243,16 @@ bash start_codon.sh pORFs.bed
 bash modulC_TIS_analysis/7_get_start_codon/start_codon.sh modulA_pORFs_genome_search/2_region_selection/output/pORFs_filtered.bed
 ```
 
-The **BED** output file can be found in the output folder.
+The **BED** output file can be found in the output folder. If you wish to change the offset, open the `start_codon.R` file and modify the offset in line 5 and 6. The offsets are given in nucleotides:
 
-Next, TIS-Seq read will be counted and ORF over the cutoff will be returns 
+```
+# upstream offset in nucleotides
+up_offset <- 3
+down_offset <- 3
+
+```
+
+Next, TIS-Seq reads will counted and ORF over the cutoff will be returns 
 
 **Step 8**: count Tis-Seq reads and identify translated ORF start codons
 
