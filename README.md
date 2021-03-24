@@ -17,7 +17,7 @@ In the following you can find information regarding:
 
 ## Introduction to the algorithm
 
-Our algorithm contains 3 moduls:
+Our algorithm contains scripts written in bash, Perl and R. The algorithm contains 3 moduls:
 
 * module A: Genome search module to detect all possible ORFs from a gives genome (FASTA)
 * module B: Detect smORF candidates using ribosome profiling data
@@ -33,7 +33,7 @@ Thoughout the different step different file formats are used: **BED** format in 
 
 ## Example data and replicates
 
-We provide our code together with an truncated ***E.coli*** genome input (~100000 first bases) and outputs as examples. The scripts are written in bash, Perl and R. To execute the examples call the bash script in each subfolder. Or run the modules in a one-step procedure. Please note, that for module B, the one-step procedure excludes the calibration (i.e. the codon exact positioning) of  Ribo-Seq reads because manual input is required.
+We provide our code together with an truncated input files: ***E.coli*** genome input (~100000 first bases) in **FASTA** format(`ecoli_100k_nt.fa`) and all protein coding genes in **BED** format (`ecoli_genes.bed`). Additionally, we provide examples of Ribo-Seq, calibrated Ribo-Seq and TIS-Seq sequencing reads in the **BAM** format that are already mapped/aligned such that the workflow can be executed using the examples. Each of the **BAM** files contain ~500,000 reads. To execute the examples call the bash script in each subfolder. The exact example calls are give in the  [Code](#code-and-example-data) section.
 
 The algortihm does not use replicate sequencing data directly. A ususal approach is first to check that the replicates show that same behavior for high expressed genes regarding the read counts. Second, the replicates can be merged into one file to increase the detection limit for low expressed genes.  
 
@@ -303,9 +303,9 @@ The output files can be found in the according subfolders (see details above ste
 
 To manipulate and modify input file we provide few scripts in the `helper_scripts` folder. 
 
-** GFF to BED parser**: `parse_gff.R` This script can parse GFF ot BED files.
+**GFF to BED parser**: `parse_gff.R` This script can parse GFF ot BED files.
 
-** Read middle nucleotide**: Get the middle nucleotid from each mapped sequencing read. 
+**Read middle nucleotide**: Get the middle nucleotid from each mapped sequencing read. 
 
 ## Installation & Requirements
 
