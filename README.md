@@ -127,9 +127,9 @@ We do not recommend to run the full module A in a one-step procedure. However, y
 
 ```
 # call:
-# bash run_moduleA.sh fasta.fa genome_name out_name min_ORF_length max_ORF_length regions_to_select.bed out_name2
+bash run_moduleA.sh fasta.fa genome_name out_name min_ORF_length max_ORF_length regions_to_select.bed out_name2
 # call using example data: 
-# bash modulA_pORFs_genome_search/run_moduleA.sh example_data/ecoli_100k_nt.fa U00096 pORFs 9 150  example_data/ecoli_genes.bed pORFs_filtered
+bash modulA_pORFs_genome_search/run_moduleA.sh example_data/ecoli_100k_nt.fa U00096 pORFs 9 150  example_data/ecoli_genes.bed pORFs_filtered
 ```
 
 The output files can be found in the according subfolders (see details above step 1 to step 3). Please note, that step 2 runs in selection (not un-selection) mode. 
@@ -227,13 +227,20 @@ Please not the for the mapping the genome name has to be used as in the resultin
 
 ##### Details on module C
 
+First, the start codon location has to be identified and a new **BED** file with the start codon +- one codon will be created for the counting of TIS-Seq reads in the next step.
+
 **Step 7**: obtain start codon location to prepare for counting
 
 ```
 # call script 
 bash start_codon.sh pORFs.bed 
 # call using example data
+bash modulC_TIS_analysis/7_get_start_codon/start_codon.sh modulA_pORFs_genome_search/2_region_selection/output/pORFs_filtered.bed
 ```
+
+The **BED** output file can be found in the output folder.
+
+Next, TIS-Seq read will be counted and ORF over the cutoff will be returns 
 
 **Step 8**: count Tis-Seq reads and identify translated ORF start codons
 
@@ -241,6 +248,7 @@ bash start_codon.sh pORFs.bed
 # call script 
 bash count_TIS.sh start_codons.bed TisSeq.bam 
 # call using example data
+bash modulC_TIS_analysis/8_count_TIS/count_TIS.sh modulC_TIS_analysis/7_get_start_codon/output/start_codons.bed example_data/TIS.bam 
 ```
 
 ## Installation & Requirements
