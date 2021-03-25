@@ -1,7 +1,7 @@
 ### commands to process gff/gtf to bed file
 
-# read 
-gff <- read.table('../annotation_genome_download/ecoli/ecoli_annotation.gff3', sep = "\t", stringsAsFactors = F, header = F, comment.char = '#', quote = '####')
+# read input gff 
+gff <- read.table('myGFF.gff3', sep = "\t", stringsAsFactors = F, header = F, comment.char = '#', quote = '####')
 
 # get CDS only
 cds <- gff[gff[,3]=='CDS',]
@@ -22,4 +22,4 @@ bed[,4] <- gsub('.+;Parent=(gene-b[0-9]{1,6});.+',"\\1",cds2[,9]) # parse name
 bed[,2] <- bed[,2]-1 # make 0-based
 
 # write table
-write.table(bed, 'ecoli_annotation_cds.bed', sep = "\t", col.names = F, row.names = F, quote = F)
+write.table(bed, 'output.bed', sep = "\t", col.names = F, row.names = F, quote = F)
