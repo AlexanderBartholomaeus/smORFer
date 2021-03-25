@@ -100,5 +100,5 @@ for(i in 1:nrow(genes)){
 idx <- which(storeFT[,2]/storeFT[,3] > cutoff) # this is the genes we would be interested
 
 # write candidates
-write.table(genes[idx,],'output/FT_passed.bed', sep = "\t", col.names = F, row.names = F, quote = F)
+write.table(genes[idx,],paste0(get_param[3],'/output/FT_passed.bed'), sep = "\t", col.names = F, row.names = F, quote = F)
 

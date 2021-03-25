@@ -36,7 +36,7 @@ while ($line = <IN>) {
 close(IN);
 
 $seqLength = length($seq);
-print "$seqLength\n";
+#print "$seqLength\n";
 
 ###Forward strand
 $posi = 0;  

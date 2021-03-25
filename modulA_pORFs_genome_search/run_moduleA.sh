@@ -9,39 +9,38 @@
 ### Step1
 # get script path
 script_path=$(dirname "$0")
-script_path="${script_path}/1_pORF"
+script_path1="${script_path}/1_pORF"
 
 # create output folder
-mkdir -p "${script_path}/output"
+mkdir -p "${script_path1}/output"
 
 # predict small putative ORFs from genome including length restriction
-perl "${script_path}/porf_bedformat.pl" $1 $2 "${script_path}/output/${3}.txt" "${script_path}/output/${3}.bed" $4 $5
+perl "${script_path1}/porf_bedformat.pl" $1 $2 "${script_path1}/output/${3}.txt" "${script_path1}/output/${3}.bed" $4 $5
 
 # parse output (remove header)
-sed '1d' "${script_path}/output/${3}.bed" > "${script_path}/output/${3}_noHead.bed"
-rm "${script_path}/output/${3}.bed"
-mv "${script_path}/output/${3}_noHead.bed" "${script_path}/output/${3}.bed"
+sed '1d' "${script_path1}/output/${3}.bed" > "${script_path1}/output/${3}_noHead.bed"
+rm "${script_path1}/output/${3}.bed"
+mv "${script_path1}/output/${3}_noHead.bed" "${script_path1}/output/${3}.bed"
 
 
 ### Step2
 # get script path
-script_path=$(dirname "$0")
-script_path="${script_path}/2_region_selection"
+script_path2="${script_path}/2_region_selection"
 
 # create output folder
-mkdir -p "${script_path}/output"
+mkdir -p "${script_path2}/output"
 
 # get pORFs in non-annotated regions
-intersectBed -s -b $1 -a "${script_path}/output/${2}.bed" > "${script_path}/output/${2}_filtered.bed"
+intersectBed -s -v -b $6 -a "${script_path1}/output/${3}.bed" > "${script_path2}/output/${3}.bed"
 
 
 ### Step3
 # get script path
-script_path=$(dirname "$0")
-script_path="${script_path}/3_FT_GCcontent"
+script_path3="${script_path}/3_FT_GCcontent"
 
 # create output folder
-mkdir -p "${script_path}/output"
+mkdir -p "${script_path3}/output"
 
 # get FT candidates
-Rscript --vanilla FT_GCcontent.R $1 $2
+Rscript --vanilla "${script_path3}/FT_GCcontent.R" $1 "${script_path1}/output/${3}.bed" ${script_path3}
+

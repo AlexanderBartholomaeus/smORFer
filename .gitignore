@@ -4,3 +4,5 @@
 .Ruserdata
 *.Rproj
 README.html
+modulA_pORF_genome_search/output
+modulA_pORF_genome_search/output/*

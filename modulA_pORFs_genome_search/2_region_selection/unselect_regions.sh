@@ -13,4 +13,5 @@ script_path=$(dirname "$0")
 mkdir -p "${script_path}/output"
 
 # get pORFs in non-annotated regions
-intersectBed -s -v -b $1 -a "${script_path}/output/${2}.bed" > "${script_path}/output/${2}_filtered.bed"
+intersectBed -s -v -b $1 -a $2 > "${script_path}/output/${3}.bed"
+
