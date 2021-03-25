@@ -310,7 +310,7 @@ To manipulate and modify input file we provide few scripts in the `helper_script
 **Read middle nucleotide**: `parse_readMiddle.pl` extracts the middle nucleotid from each mapped sequencing read. This script can be but used to extract the middle nucleotide for the mapped TIS reads. Below you find an example on few full length TIS reads:
 
 ```
-# call script 
+# call script using TIS full length example data
 samtools view -h example_data/TIS_full_read.bam | perl helper_scripts/parse_readMiddle.pl | samtools view -b > out.bam
 
 ```
