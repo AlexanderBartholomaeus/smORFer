@@ -116,7 +116,7 @@ This step uses the input regions a checks for 3-nt sequence periodicity to prefi
 # call:
 bash FT_GCcontent.sh fasta.fa orfs.bed
 # call using example data: 
-bash modulA_pORFs_genome_search/3_FT_GCcontent/FC_GCcontent.sh example_data/ecoli_100k_nt.fa modulA_pORFs_genome_search/2_region_selection/output/pORFs_filtered.bed
+bash modulA_pORFs_genome_search/3_FT_GCcontent/FT_GCcontent.sh example_data/ecoli_100k_nt.fa modulA_pORFs_genome_search/2_region_selection/output/pORFs_filtered.bed
 ```
 
 In the output folder you will find the ORFs that show a sequence (GC content) 3-nt periodic pattern. The output file is call `FT_passed.bed`. 
