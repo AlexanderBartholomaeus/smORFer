@@ -93,5 +93,5 @@ verified <- cbind(u_genes[idx,],round(storeFT[idx,2]/storeFT[idx,3], digits=6))
 colnames(verified)[7] <- 'FT_ratio'
 
 # write candidates
-write.table(verified,'output/RPF_verified.txt', sep = "\t", col.names = F, row.names = F, quote = F)
+write.table(verified,paste0(get_param[2],'/output/RPF_3nt_translated.txt'), sep = "\t", col.names = F, row.names = F, quote = F)
 

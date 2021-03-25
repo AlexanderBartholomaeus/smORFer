@@ -8,3 +8,9 @@ modulA_pORF_genome_search/1_pORF/output
 modulA_pORF_genome_search/1_pORF/output/*
 modulA_pORF_genome_search/2_region_selection/output
 modulA_pORF_genome_search/2_region_selection/output/*
+modulB_RPF_analysis/4_count_RPF/output
+modulB_RPF_analysis/4_count_RPF/output/*
+modulB_RPF_analysis/5_FT_RPF/output
+modulB_RPF_analysis/5_FT_RPF/output/*
+modulB_RPF_analysis/6_find_most_probable_start/output
+modulB_RPF_analysis/6_find_most_probable_start/output/*

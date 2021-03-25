@@ -204,7 +204,7 @@ bash FT_RPF.sh high_expressed_ORFs.bed calibrated_RiboSeq.bam
 bash modulB_RPF_analysis/5_FT_RPF/FT_RPF.sh modulB_RPF_analysis/4_count_RPF/output/RPF_high.bed example_data/RPF_calibrated.bam
 ```
 
-The output is a **BED** like file with all ORF passing the cutoff with an additional column showing the FT ratio signal. Please note that our example call did not reveal any ORF because the example **BAM** file contain too few reads and would be too large to be stored here.
+The output is a **BED** like file with all ORF passing the cutoff with an additional column showing the FT ratio signal. Please note that our example call did not reveal any ORF because the example **BAM** file contain too few reads and the complete file would be too large to be stored here.
 
 **Step 6[optional]**: find most probable start
 
@@ -212,7 +212,9 @@ The Step is experimentally. You may find it useful to detect the most probable s
 
 ```
 # get most probable start codon from RPF reads
-bash find_best_start.sh
+# bash find_best_start.sh RPF_validated.bed RFP_calibrated.bed
+# call using example data
+# bash modulB_RPF_analysis/6_find_most_probable_start/find_best_start.sh modulB_RPF_analysis/4_count_RPF/output/RPF_translated.txt example_data/RPF_calibrated.bam
 
 ```
 
