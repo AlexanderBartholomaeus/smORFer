@@ -33,4 +33,4 @@ bed_m_f <- cbind(
 bed_new <- rbind(bed_p_f,bed_m_f)
 
 # write results
-write.table(bed_new,'output/TIS_start_codon.bed',col.names = F, row.names = F, quote=F, sep='\t')
+write.table(bed_new,paste0(get_param[2],'/output/start_codons.bed'),col.names = F, row.names = F, quote=F, sep='\t')

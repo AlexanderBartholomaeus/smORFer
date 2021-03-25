@@ -11,5 +11,6 @@ script_path=$(dirname "$0")
 # create output folder
 mkdir -p "${script_path}/output"
 
-# get FT candidates
-Rscript --vanilla get_start_codon.R $1
+# get start codons of ORFs
+Rscript --vanilla "${script_path}/start_codon.R" $1 ${script_path}
+

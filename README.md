@@ -296,7 +296,7 @@ You can run complete module C by calling:
 # call:
 bash run_moduleC.sh pORFs.bed TisSeq.bam
 # call using example data: 
-bash modulC_TIS_analysis/run_modulec.sh modulA_pORFs_genome_search/2_region_selection/output/pORFs_filtered.bed example_data/TIS.bam 
+bash modulC_TIS_analysis/run_moduleC.sh modulA_pORFs_genome_search/2_region_selection/output/pORFs_filtered.bed example_data/TIS.bam 
 ```
 
 The output files can be found in the according subfolders (see details above step 7 and step 8). 

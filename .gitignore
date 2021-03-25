@@ -14,3 +14,7 @@ modulB_RPF_analysis/5_FT_RPF/output
 modulB_RPF_analysis/5_FT_RPF/output/*
 modulB_RPF_analysis/6_find_most_probable_start/output
 modulB_RPF_analysis/6_find_most_probable_start/output/*
+modulC_TIS_analysis/7_get_start_codon/output
+modulC_TIS_analysis/7_get_start_codon/output/*
+modulC_TIS_analysis/8_count_TIS/output
+modulC_TIS_analysis/8_count_TIS/output/*
