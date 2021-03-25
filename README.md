@@ -68,7 +68,7 @@ This step searches for all possible ORFs in all reading frame and for a given OR
 # call script 
 bash putative_orfs.sh fasta.fa genome_name out_name min_ORF_length max_ORF_length
 # call using example data
-bash modulA_pORFs_genome_search/1_pORF/putative_orfs.sh example_data/ecoli_100k_nt.fa U00096 pORFs 9 150
+bash modulA_pORFs_genome_search/1_pORF/putative_orfs.sh example_data/ecoli_100k_nt.fa U00096.3 pORFs 9 150
 ```
 
 The output will be written into a folder called `output` inside the location of the folder of the script. Here, this would be `modulA_pORFs_genome_search/1_pORF/output`. The example command create two file: `pORFs.bed` a **BED** file with all putative ORFs and `pORF.txt` a list of the same ORFs including detected start and stop codons. 
@@ -135,7 +135,7 @@ We do not recommend to run the full module A in a one-step procedure. However, y
 # call:
 bash run_moduleA.sh fasta.fa genome_name out_name min_ORF_length max_ORF_length regions_to_select.bed out_name2
 # call using example data: 
-bash modulA_pORFs_genome_search/run_moduleA.sh example_data/ecoli_100k_nt.fa U00096 pORFs 9 150 example_data/ecoli_genes.bed pORFs_filtered
+bash modulA_pORFs_genome_search/run_moduleA.sh example_data/ecoli_100k_nt.fa U00096.3 pORFs 9 150 example_data/ecoli_genes.bed pORFs_filtered
 ```
 
 The output files can be found in the according subfolders (see details above step 1 to step 3). Please note, that step 2 runs in selection (not un-selection) mode. 
