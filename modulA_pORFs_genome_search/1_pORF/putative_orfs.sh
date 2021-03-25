@@ -3,7 +3,7 @@
 # call: 
 # bash putative_orfs.sh fasta.fa genome_name out_name min_ORF_length max_ORF_length
 # call using example data: 
-# bash modulA_pORFs_genome_search/1_pORF/putative_orfs.sh example_data/ecoli_100k_nt.fa U00096 pORFs 9 150
+# bash modulA_pORFs_genome_search/1_pORF/putative_orfs.sh example_data/ecoli_100k_nt.fa U00096.3 pORFs 9 150
 
 # get script path
 script_path=$(dirname "$0")

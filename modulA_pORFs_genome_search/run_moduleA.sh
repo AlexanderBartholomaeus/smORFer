@@ -3,7 +3,7 @@
 # call:
 # bash run_moduleA.sh fasta.fa genome_name out_name min_ORF_length max_ORF_length regions_to_select.bed out_name2
 # call using example data: 
-# bash modulA_pORFs_genome_search/run_moduleA.sh example_data/ecoli_100k_nt.fa U00096 pORFs 9 150  example_data/ecoli_genes.bed pORFs_filtered
+# bash modulA_pORFs_genome_search/run_moduleA.sh example_data/ecoli_100k_nt.fa U00096.3 pORFs 9 150  example_data/ecoli_genes.bed pORFs_filtered
 
 
 ### Step1
@@ -31,7 +31,7 @@ script_path2="${script_path}/2_region_selection"
 mkdir -p "${script_path2}/output"
 
 # get pORFs in non-annotated regions
-intersectBed -s -v -b $6 -a "${script_path1}/output/${3}.bed" > "${script_path2}/output/${3}.bed"
+intersectBed -s -v -b $6 -a "${script_path1}/output/${3}.bed" > "${script_path2}/output/${3}_filtered.bed"
 
 
 ### Step3
