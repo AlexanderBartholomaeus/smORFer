@@ -84,6 +84,7 @@ for(i in 1:nrow(u_genes)){
     cat(paste0('  ',u_genes[i,4],' skipped\n'))
   } 
 }
+cat('DONE\n')
 
 # select candidates with high FT at period 3
 idx <- which(storeFT[,2]/storeFT[,3] > cutoff) # this is the genes we would be interested
