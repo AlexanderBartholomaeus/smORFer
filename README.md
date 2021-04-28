@@ -209,7 +209,7 @@ The output is a **BED** like file with all ORF passing the cutoff with an additi
 
 **Step 6[optional]**: find most probable start
 
-The Step is experimentally. You may find it useful to detect the most probable start codon for a set of ORF with the same stop codon if you have only Ribo-Seq and no TIS-Seq data available. The script identifies the ORF with the highest RPF variance and selects it as the most probable one. The assumption is that ORFs that are fully covered by RPFs show a higher variance than ORFs that are only partially covered. However, there might be some bias towards shorter ORFs. For this the script also outputs the ratio of RPFs found in 1. half vs 2. half of each ORF. In the example below we use the candidates from step 4 and calibrated reads. However you can also use custom candidates in **BED** format and uncalibrated reads (e.g. only middle nucleotide, see [Helper scripts](#helper-scripts)) in **BAM** format, as the precise positioning of RPF might not be necessary.
+The Step is experimentally. You may find it useful to detect the most probable start codon for a set of ORF with the same stop codon if you have only Ribo-Seq and no TIS-Seq data available. The script identifies the ORF with the highest RPF variance and selects it as the most probable one. The assumption is that ORFs that are fully covered by RPFs show a higher variance than ORFs that are only partially covered. However, there might be some bias towards shorter ORFs. For this the script also outputs the ratio of RPFs found in 1. half vs 2. half of each ORF. In the example below we use the candidates from step 4 and calibrated reads. However, you can also use custom candidates in **BED** format and uncalibrated reads (e.g. only middle nucleotide, see [Helper scripts](#helper-scripts)) in **BAM** format, as the precise positioning of RPF might not be necessary.
 
 ```
 # get most probable start codon from RPF reads
@@ -219,7 +219,7 @@ bash modulB_RPF_analysis/6_find_most_probable_start/find_best_start.sh modulB_RP
 
 ```
 
-The output folder contains 4 files. The **RPF_...** files are generated during the processing. The **best_start.bed** file contains the candidates with the most probable start, according the read distribution variance. The **best_start_results.txt** contains the calculated values of variance, and 1./2.half RPF count and total read counts for each ORF such that you can filter and review on your own.   
+The output folder contains 4 files. The **RPF_...** files are generated during the processing. The **best_start.bed** file contains the candidates with the most probable start, according the variance of RPF reads. The **best_start_results.txt** contains the calculated values of variance, and 1./2.half RPF count and total read counts for each ORF such that you can filter and review on your own.   
 
 
 #### One-step module B
