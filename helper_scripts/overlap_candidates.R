@@ -21,7 +21,7 @@ bed_p_new <-
     ),
     paste0(
       bed_p_u[,1],'_',
-      bed_p_u[,2]
+      (bed_p_u[,2]+up_offset)
     )
   ),]
 # minus strand
@@ -36,7 +36,7 @@ bed_m_new <-
     ),
     paste0(
       bed_m_u[,1],
-      bed_m_u[,2]
+      (bed_m_u[,2]-down_offset)
     )
   ),]
 

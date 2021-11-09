@@ -323,9 +323,8 @@ samtools view -h example_data/TIS_full_read.bam | perl helper_scripts/parse_read
 
 ```
 # call script to overlap/intersect
-Rscript helper_scripts/overlap_candidates.R TIS_candidates.bed other_candidates.bed overlap.bed
+Rscript helper_scripts/overlap_candidates.R TIS_candidates.txt other_candidates.txt overlap.txt
 ```
-
 
 ## Installation & Requirements
 
