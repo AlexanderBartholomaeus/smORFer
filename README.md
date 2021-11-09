@@ -319,6 +319,14 @@ samtools view -h example_data/TIS_full_read.bam | perl helper_scripts/parse_read
 
 ```
 
+**Overlap/intersect start codon candidates**: `overlap_candidates.R` intersects a list of candidates, e.g. from module A and B, with candidates from TIS analysis (from module C). You can directly input the results from module A, B, C because the count files are in **BED**-like format. Please note: while generating the TIS candidates in module C, file `start_codon.R` and offset is used (default +-3 nt around the start codon). The same offset is used in the `overlap_candidates.R`.    
+
+```
+# call script to overlap/intersect
+Rscript helper_scripts/overlap_candidates.R TIS_candidates.bed other_candidates.bed overlap.bed
+```
+
+
 ## Installation & Requirements
 
 ### Requirements
